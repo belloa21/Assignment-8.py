@@ -59,3 +59,20 @@ while menu != 5:
                 price = inventory_system_price.pop()
                 total_sale += (qty_popped * price)
                 total_popped += qty_popped
+            while total_popped < qty_needed:
+                qty_popped = inventory_system_qty.pop()
+                total_stock_qty -= qty_popped
+                price = inventory_system_price.pop()
+                total_sale += (qty_popped * price)
+                total_popped += qty_popped
+
+            if total_popped > qty_needed:
+                overage = total_popped - qty_needed
+                inventory_system_qty.push(overage)
+                inventory_system_price.push(price)
+                total_stock_qty += overage
+                total_sale -=(overage * price)
+
+            total_value_of_sold_stocks += total_sale
+            total_profit += (total_sale * .1)
+        print(f"You have successfully filled the order for {qty_needed}\n")
