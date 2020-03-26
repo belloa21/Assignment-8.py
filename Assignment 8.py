@@ -39,3 +39,23 @@ while menu != 5:
         print("Alright, everything's in.")
 
         total_stock_qty += qty
+
+    elif menu == 2:
+        qty_needed = int(input("How many stocks would you like to sell?"))
+        if qty_needed > total_stock_qty:
+            print("You don't seem to have enough stocks to do that.")
+        else:
+            total_popped = 0
+            total_sale = 0.0
+
+            qty_popped = inventory_system_qty.pop()
+            total_stock_qty -= qty_popped
+            price = inventory_system_price.pop()
+            total_sale += (qty_popped * price)
+            total_popped += qty_popped
+            while total_popped < qty_needed:
+                qty_popped = inventory_system_qty.pop()
+                total_stock_qty -= qty_popped
+                price = inventory_system_price.pop()
+                total_sale += (qty_popped * price)
+                total_popped += qty_popped
