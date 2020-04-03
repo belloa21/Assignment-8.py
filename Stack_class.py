@@ -3,26 +3,47 @@
 # The stack and queue classes are stored here
 
 
-class Stack:
+class Qty_Stack:
     def __init__(self):
-        self.myList = []
+        self.qty = []
 
     def push(self, data):
-        self.myList.append(data)
+        self.qty.append(data)
 
     def pop(self):
-        return self.myList[-1]
+        return self.qty[-1]
 
 
-class Queue:
+class Price_Stack:
     def __init__(self):
-        self.myList = LinkedListTail()
+        self.price = []
 
     def push(self, data):
-        self.myList.push_end(data)
+        self.price.append(data)
 
     def pop(self):
-        return self.myList.pop_end()
+        return self.price
+
+
+class Qty_Queue:
+    def __init__(self):
+        self.qty = LinkedListTail()
+
+    def push(self, data):
+        self.qty.push_end(data)
+
+    def pop(self):
+        return self.qty.pop_end()
+
+class Price_Queue:
+    def __init__(self):
+        self.price = LinkedListTail()
+
+    def push(self, data):
+        self.price.push_end(data)
+
+    def pop(self):
+        return self.price.pop_end()
 
 
 class ListNode:

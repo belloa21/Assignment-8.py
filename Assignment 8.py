@@ -2,8 +2,10 @@
 # 3/26/2020
 # The driver for keeping track of stock totals and the total profit or loss from those stocks.
 
-from Stack_class import Stack
-from Stack_class import Queue
+from Stack_class import Qty_Stack
+from Stack_class import Price_Stack
+from Stack_class import Qty_Queue
+from Stack_class import Price_Queue
 
 
 choice = int(input("""Please chose how you would like to work with your stocks
@@ -11,15 +13,15 @@ hit 1 for Stack, or hit 2 for Queue."""))
 
 
 if choice == 1:
-    myList = Stack()
+    qty = Qty_Stack()
+    price = Price_Stack()
 else:
-    myList = Queue()
+    qty = Qty_Queue()
+    price = Price_Queue
 
 total_stock_qty = 0
 total_profit = 0.0
 total_value_of_sold_stocks = 0.0
-inventory_system_qty = choice
-inventory_system_price = choice
 menu = 0
 
 while menu != 5:
@@ -34,8 +36,10 @@ while menu != 5:
     if menu == 1:
         qty = int(input("How many stocks are you buying today?"))
         price = float(input("How much are they?"))
-        inventory_system_qty.push(qty)
-        inventory_system_price.push(price)
+        Qty_Stack.push(qty)
+        Qty_Queue.push(qty)
+        Price_Stack.push(price)
+        Price_Queue.push(price)
         print("Alright, everything's in.")
 
         total_stock_qty += qty
@@ -54,13 +58,16 @@ while menu != 5:
             total_sale += (qty_popped * price)
             total_popped += qty_popped
             while total_popped < qty_needed:
-                qty_popped = inventory_system_qty.pop()
+                qty_popped = Qty_Stack.pop()
+                qty_popped = Qty_Queue.pop()
                 total_stock_qty -= qty_popped
-                price = inventory_system_price.pop()
+                price = Price_Stack.pop()
+                price = Price_Queue.pop()
                 total_sale += (qty_popped * price)
                 total_popped += qty_popped
             while total_popped < qty_needed:
-                qty_popped = inventory_system_qty.pop()
+                qty_popped = Qty_Stack.pop()
+                qty_popped = Qty_Queue.pop()
                 total_stock_qty -= qty_popped
                 price = inventory_system_price.pop()
                 total_sale += (qty_popped * price)
